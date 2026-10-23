@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import { profile, type Locale } from '../data/profile';
+import { labels, localizedPath } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+  section?: '' | 'blogs' | 'projects';
+  alternatePath?: string | null;
+  noindex?: boolean;
+}
+const { locale, title, description = profile[locale].description, section = '', alternatePath, noindex = false } = Astro.props;
+const otherLocale = locale === 'en' ? 'zh' : 'en';
+const alternate = alternatePath === undefined ? localizedPath(otherLocale, section) : alternatePath;
+const canonical = new URL(Astro.url.pathname.replace(/^\/404\/?$/, '/404.html'), Astro.site);
+const pageTitle = title ? `${title} · Ziyang Chen` : 'Ziyang Chen · 陈子扬';
+const englishPath = noindex ? null : (locale === 'en' ? Astro.url.pathname : alternate);
+const chinesePath = noindex ? null : (locale === 'zh' ? Astro.url.pathname : alternate);
+---
+<!doctype html>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/chen-editorial-32.png" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/icons/chen-editorial.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/chen-editorial-180.png" />
+    <link rel="canonical" href={canonical} />
+    {englishPath && <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />}
+    {chinesePath && <link rel="alternate" hreflang="zh-CN" href={new URL(chinesePath, Astro.site)} />}
+    {englishPath && <link rel="alternate" hreflang="x-default" href={new URL(englishPath, Astro.site)} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta name="twitter:card" content="summary" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{labels[locale].skip}</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-name" href={localizedPath(locale)} aria-label={locale === 'en' ? 'Ziyang Chen — Home' : '陈子扬 — 首页'}><img class="brand-mark" src="/icons/chen-editorial-light.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="brand-word" src="/icons/ziyang-wordmark.svg" width="78" height="28" alt="" aria-hidden="true" /></a>
+        <nav aria-label={locale === 'en' ? 'Main navigation' : '主导航'}>
+          <a href={localizedPath(locale)} aria-current={section === '' ? 'page' : undefined}>Home</a>
+          <a href={localizedPath(locale, 'blogs')} aria-current={section === 'blogs' ? 'page' : undefined}>Blogs</a>
+          <a href={localizedPath(locale, 'projects')} aria-current={section === 'projects' ? 'page' : undefined}>Projects</a>
+          {alternate && <a class="language-switch" href={alternate} lang={otherLocale === 'zh' ? 'zh-CN' : 'en'} aria-label={otherLocale === 'zh' ? '切换到中文' : 'Switch to English'}>{otherLocale === 'zh' ? '中文' : 'EN'}</a>}
+        </nav>
+      </header>
+      <main id="main" tabindex="-1"><slot /></main>
+      <footer class="site-footer">
+        <span>© {new Date().getFullYear()} {locale === 'zh' ? profile.nameZh : profile.name}</span>
+        <span>{locale === 'zh' ? '清华大学' : 'Tsinghua University'}</span>
+      </footer>
+    </div>
+  </body>
+</html>

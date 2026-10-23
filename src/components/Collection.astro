@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import type { Locale } from '../data/profile';
+import { labels } from '../lib/i18n';
+import { publishedEntries, entryPath, formatDate, type Section } from '../lib/content';
+interface Props { locale: Locale; section: Section }
+const { locale, section } = Astro.props;
+const entries = (await publishedEntries(section)).filter(entry => entry.data.locale === locale);
+const l = labels[locale];
+---
+<Base locale={locale} section={section} title={l[section]}>
+  <section class="collection-page">
+    <header class="page-heading"><p class="eyebrow">{locale === 'zh' ? (section === 'blogs' ? '思考与记录' : '作品与实验') : (section === 'blogs' ? 'Writing' : 'Selected work')}</p><h1>{l[section]}</h1><p class="page-intro">{l[`${section}Intro`]}</p></header>
+    {entries.length === 0 ? <div class="empty-state"><span class="empty-line" aria-hidden="true"></span><p>{l[`${section}Empty`]}</p></div> :
+      <div class="collection-list">{entries.map(entry => <article>
+        <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
+        <h2><a href={entryPath(section, entry.data)}>{entry.data.title}</a></h2>
+        <p>{entry.data.description}</p>
+      </article>)}</div>
+    }
+  </section>
+</Base>

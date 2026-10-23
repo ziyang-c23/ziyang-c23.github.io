@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { profile, publication, type Locale } from '../data/profile';
+import { labels } from '../lib/i18n';
+import framework from '../assets/emerge-framework.png';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const p = profile[locale];
+const l = labels[locale];
+const paper = publication[locale];
+---
+<Base locale={locale}>
+  <div class="home-layout">
+  <section class="intro" aria-labelledby="name">
+    <p class="eyebrow">{p.role}</p>
+    <h1 id="name">{locale === 'en' ? profile.name : profile.nameZh}<span class="other-name" lang={locale === 'en' ? 'zh-CN' : 'en'}>{locale === 'en' ? profile.nameZh : profile.name}</span></h1>
+    <p class="bio">{p.bio}</p>
+    <p class="interest-label">{l.interests}</p>
+    <ul class="interests" aria-label={l.interests}>
+      {p.interests.map(interest => <li>{interest}</li>)}
+    </ul>
+    <div class="contact-links">
+      <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      <a href={profile.github}>GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  <div class="research-column">
+  <section class="home-section" aria-labelledby="publications">
+    <h2 id="publications">{l.publications}</h2>
+    <article class="publication">
+      <div class="paper-image">
+        <Image src={framework} alt={paper.imageAlt} widths={[480, 960]} sizes="(max-width: 620px) calc(100vw - 40px), (min-width: 901px) and (max-width: 1100px) 320px, 220px" width={960} format="webp" loading="eager" />
+      </div>
+      <div class="paper-copy">
+        <p class="paper-status">{paper.status} <span aria-hidden="true">·</span> {publication.year}</p>
+        <h3><a href={publication.paper}>{publication.title}</a></h3>
+        <p class="authors">{publication.authors.map((author, i) => <>{i > 0 && ', '}{author === profile.name ? <strong>{author}<sup>*</sup></strong> : <>{author}<sup>*</sup></>}</>)}, {l.moreAuthors}</p>
+        <p class="contribution">{paper.contribution}</p>
+        <p class="paper-summary">{paper.summary}</p>
+        <div class="paper-links"><a href={publication.paper}>{l.paper} ↗</a><a href={publication.project}>{l.project} ↗</a><a href={publication.code}>{l.code} ↗</a></div>
+      </div>
+    </article>
+  </section>
+  <section class="home-section" aria-labelledby="experience">
+    <h2 id="experience">{l.experience}</h2>
+    <div class="experience-list">
+      {p.experience.map(item => <article class="experience">
+        <div class="entry-heading"><h3>{item.title}</h3><p class="date">{item.date}</p></div>
+        <p class="entry-role">{item.role}</p>
+        <p class="entry-description">{item.description}</p>
+      </article>)}
+    </div>
+  </section>
+  </div>
+  <section class="home-section education-section" aria-labelledby="education">
+    <h2 id="education">{l.education}</h2>
+    <div class="entry-heading"><h3>{p.education.school}</h3><p class="date">{p.education.date}</p></div>
+    <p class="entry-role">{p.education.college}</p>
+    <p class="entry-description">{p.education.degree}</p>
+  </section>
+  </div>
+</Base>
