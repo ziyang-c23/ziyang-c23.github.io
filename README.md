@@ -60,6 +60,6 @@ npm run preview
 
 发布地址：[ziyang-c23.github.io](https://ziyang-c23.github.io/)。源码仓库：[ziyang-c23/ziyang-c23.github.io](https://github.com/ziyang-c23/ziyang-c23.github.io)。
 
-仓库 Settings → Pages 的 Source 使用 GitHub Actions。推送 `main` 后，内置工作流会检查类型、构建、校验链接并部署 `dist/`；PR 只构建验证，不部署。部署后需回访实际页面，不以本地构建代替线上验证。
+仓库 Settings → Pages 的 Source 使用 GitHub Actions。推送 `main` 后，内置工作流在 Ubuntu 24.04 上检查类型、验证双语模板与草稿隔离、恢复正式构建、校验链接并部署 `dist/`；PR 只构建验证，不部署。部署后需回访实际页面，不以本地构建代替线上验证。
 
 源码仓库只维护网站。无后端、访问统计、评论、私人资料自动同步或自动研究更新。`artifacts/` 是忽略的本地预览截图目录，不发布。
