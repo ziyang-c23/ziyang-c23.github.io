@@ -27,6 +27,12 @@ export const profile = {
         date: 'Jun. — Aug. 2026',
         description: 'VLA post-training and generalization, from simulation evaluation to real-robot interaction.',
       },
+      {
+        title: 'Acorn Robot',
+        role: 'Research Intern',
+        date: 'Jun. 2024 — Dec. 2025',
+        description: 'Research on multi-object grasping and adaptive compliance control.',
+      },
     ],
     education: {
       school: 'Tsinghua University',
@@ -55,6 +61,12 @@ export const profile = {
         role: '研究实习 · 多模态与具身智能实验室',
         date: '2026.06 — 2026.08',
         description: '开展 VLA 后训练与泛化研究，涵盖仿真评测与真机交互。',
+      },
+      {
+        title: '橡木果机器人',
+        role: '研究实习',
+        date: '2024.06 — 2025.12',
+        description: '开展多物体抓取与自适应柔顺控制研究。',
       },
     ],
     education: {
