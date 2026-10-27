@@ -31,7 +31,7 @@ export const profile = {
         title: 'Acorn Robot',
         role: 'Research Intern',
         date: 'Oct. 2024 — Apr. 2026',
-        description: 'Developed a multi-object grasping system integrating visual perception, grasp planning, and closed-loop execution. Studied adaptive compliance control with force and tactile feedback to address slip and collisions when grasping unfamiliar objects.',
+        description: 'Visual grasping across object categories, including open-set perception and grasp planning. Adaptive compliance control with contact feedback for reliable grasping of unfamiliar objects under external disturbances.',
       },
     ],
     education: {
@@ -66,7 +66,7 @@ export const profile = {
         title: '橡木果机器人',
         role: '研究实习',
         date: '2024.10 — 2026.04',
-        description: '构建融合视觉感知与抓取规划的多物体抓取系统，实现机械臂闭环执行。研究基于力与触觉反馈的自适应柔顺控制，应对未知物体抓取中的滑移与碰撞。',
+        description: '多类别物体的视觉抓取，涵盖开放集感知与抓取规划。基于接触反馈的自适应柔顺控制，面向未知物体与外部扰动下的可靠抓取。',
       },
     ],
     education: {
