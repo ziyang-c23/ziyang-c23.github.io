@@ -30,8 +30,8 @@ export const profile = {
       {
         title: 'Acorn Robot',
         role: 'Research Intern',
-        date: 'Jun. 2024 — Dec. 2025',
-        description: 'Research on multi-object grasping and adaptive compliance control.',
+        date: 'Oct. 2024 — Apr. 2026',
+        description: 'Developed a multi-object grasping system integrating visual perception, grasp planning, and closed-loop execution. Studied adaptive compliance control with force and tactile feedback to address slip and collisions when grasping unfamiliar objects.',
       },
     ],
     education: {
@@ -65,8 +65,8 @@ export const profile = {
       {
         title: '橡木果机器人',
         role: '研究实习',
-        date: '2024.06 — 2025.12',
-        description: '开展多物体抓取与自适应柔顺控制研究。',
+        date: '2024.10 — 2026.04',
+        description: '构建融合视觉感知与抓取规划的多物体抓取系统，实现机械臂闭环执行。研究基于力与触觉反馈的自适应柔顺控制，应对未知物体抓取中的滑移与碰撞。',
       },
     ],
     education: {
