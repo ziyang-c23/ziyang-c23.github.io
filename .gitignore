@@ -6,3 +6,8 @@ dist/
 .env.*
 !.env.example
 artifacts/
+tmp/
+
+# Local scratch-backed build links
+/dist
+/.astro

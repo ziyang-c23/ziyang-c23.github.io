@@ -2,9 +2,11 @@
 
 精简的中英双语学术主页。Astro 生成静态 HTML；默认英文，中文位于 `/zh/`。
 
-桌面内容区最大 1200px，左侧放简介、兴趣与教育，右侧放论文和研究经历。900px 及以下重新组织为纵向布局，平板简介内部保留两栏，620px 及以下全部顺序阅读。正文为 16–18px，辅助信息为 14–15px；文章正文限宽 780px。
+页面采用暖白底与陶土色强调色。桌面为头像与简介侧栏、论文与经历主栏；教育背景接续研究经历，手机端按顺序阅读。顶部只保留 Home / Blogs / Projects 和语言切换。
 
-站点标识为浅底细边框的宋体「陈」印记与低调直立的无衬线 `Ziyang` 字标，中英文一致。网页使用 `public/icons/chen-editorial-light.svg` 与 `public/icons/ziyang-wordmark.svg`；标签页使用实底 `public/icons/chen-editorial.svg`，配有 PNG 兼容图标。字形均已转为 SVG 路径，不依赖访客字体。`public/favicon.svg` 保留为标签页图标的旧地址兼容副本。
+头像沿用 [GitHub 公开头像](https://github.com/ziyang-c23)，保存在 `src/assets/avatar.png`。字标已移除，标签页使用无文字的笔记图标。
+
+设计参考：[Luka Homepage](https://github.com/wzsyyh/luka-homepage-template) 的暖色与侧栏、[Joye Blog](https://github.com/joyehuang/blog) 的内容层级、[Rongqi Lu](https://ronchy2000.top/en/) 的学术信息组织。布局与样式在现有 Astro 项目内重新实现。
 
 ## 本地运行
 

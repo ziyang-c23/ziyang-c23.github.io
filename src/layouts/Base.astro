@@ -25,11 +25,9 @@ const chinesePath = noindex ? null : (locale === 'zh' ? Astro.url.pathname : alt
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#faf8f4" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/chen-editorial-32.png" />
-    <link rel="icon" type="image/svg+xml" sizes="any" href="/icons/chen-editorial.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/chen-editorial-180.png" />
     <link rel="canonical" href={canonical} />
     {englishPath && <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />}
     {chinesePath && <link rel="alternate" hreflang="zh-CN" href={new URL(chinesePath, Astro.site)} />}
@@ -46,7 +44,6 @@ const chinesePath = noindex ? null : (locale === 'zh' ? Astro.url.pathname : alt
     <a class="skip-link" href="#main">{labels[locale].skip}</a>
     <div class="site-shell">
       <header class="site-header">
-        <a class="site-name" href={localizedPath(locale)} aria-label={locale === 'en' ? 'Ziyang Chen — Home' : '陈子扬 — 首页'}><img class="brand-mark" src="/icons/chen-editorial-light.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="brand-word" src="/icons/ziyang-wordmark.svg" width="78" height="28" alt="" aria-hidden="true" /></a>
         <nav aria-label={locale === 'en' ? 'Main navigation' : '主导航'}>
           <a href={localizedPath(locale)} aria-current={section === '' ? 'page' : undefined}>Home</a>
           <a href={localizedPath(locale, 'blogs')} aria-current={section === 'blogs' ? 'page' : undefined}>Blogs</a>

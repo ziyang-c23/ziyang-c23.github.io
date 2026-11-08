@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import { profile, publication, type Locale } from '../data/profile';
 import { labels } from '../lib/i18n';
 import framework from '../assets/emerge-framework.png';
+import avatar from '../assets/avatar.png';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const p = profile[locale];
@@ -13,6 +14,7 @@ const paper = publication[locale];
 <Base locale={locale}>
   <div class="home-layout">
   <section class="intro" aria-labelledby="name">
+    <Image class="profile-avatar" src={avatar} alt={locale === 'zh' ? '陈子扬的 GitHub 头像' : 'Ziyang Chen’s GitHub avatar'} width={120} height={120} format="webp" />
     <p class="eyebrow">{p.role}</p>
     <h1 id="name">{locale === 'en' ? profile.name : profile.nameZh}<span class="other-name" lang={locale === 'en' ? 'zh-CN' : 'en'}>{locale === 'en' ? profile.nameZh : profile.name}</span></h1>
     <p class="bio">{p.bio}</p>
@@ -30,7 +32,7 @@ const paper = publication[locale];
     <h2 id="publications">{l.publications}</h2>
     <article class="publication">
       <div class="paper-image">
-        <Image src={framework} alt={paper.imageAlt} widths={[480, 960]} sizes="(max-width: 620px) calc(100vw - 40px), (min-width: 901px) and (max-width: 1100px) 320px, 220px" width={960} format="webp" loading="eager" />
+        <Image src={framework} alt={paper.imageAlt} widths={[480, 960]} sizes="(max-width: 600px) calc(100vw - 80px), 210px" width={960} format="webp" loading="eager" />
       </div>
       <div class="paper-copy">
         <p class="paper-status">{paper.status} <span aria-hidden="true">·</span> {publication.year}</p>
@@ -52,12 +54,12 @@ const paper = publication[locale];
       </article>)}
     </div>
   </section>
-  </div>
   <section class="home-section education-section" aria-labelledby="education">
     <h2 id="education">{l.education}</h2>
     <div class="entry-heading"><h3>{p.education.school}</h3><p class="date">{p.education.date}</p></div>
     <p class="entry-role">{p.education.college}</p>
     <p class="entry-description">{p.education.degree}</p>
   </section>
+  </div>
   </div>
 </Base>
